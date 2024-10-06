@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00 --- Registry File By zJu4nn
+
+; Decrease Mouse InputLag
+[HKEY_CURRENT_USER\Control Panel\Accessibility\MouseKeys]
+"Flags"=dword:0

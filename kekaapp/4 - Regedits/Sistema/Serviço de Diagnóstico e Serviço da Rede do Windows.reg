@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00 --- Registry File By zJu4nn
+
+; Windows Network Service and Diagnostics Service
+[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Ndu]
+"Start"=dword:4

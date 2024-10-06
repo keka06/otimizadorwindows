@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00 --- Registry File By zJu4nn
+
+; Decrease Mouse Hover Response Time
+[HKEY_CURRENT_USER\Control Panel\Mouse]
+"MouseHoverTime"=dword:10

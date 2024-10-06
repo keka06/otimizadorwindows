@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00 --- Registry File By zJu4nn
+
+; Disable Prefetch
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
+"EnablePrefetch"=dword:0

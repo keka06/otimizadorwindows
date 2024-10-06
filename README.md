@@ -2,7 +2,7 @@
 um aplicativo que faz otimizações basicas (apenas windows), feito em python.
 
 *é necessário ter todos os arquivos presentes, no repositório caso contrário dará erro.
-*grande parte dos arquivos devo dar créditos ao canal do zJu4nn, obrigado.
+*grande parte dos arquivos devo dar créditos ao canal do https://www.youtube.com/@zJu4nn, obrigado.
 
 projeto pessoal feito para aprender e desenvolver habilidades na área de programação.
 

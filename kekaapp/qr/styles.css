@@ -1,0 +1,48 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a1a1a; /* Fundo escuro */
+}
+
+.container {
+    text-align: center;
+    background-color: #2b2b2b; /* Container escuro */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.container:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+h1 {
+    color: #4caf50; /* Verde claro */
+    margin-bottom: 20px;
+    font-size: 28px; /* Aumenta o tamanho da fonte */
+}
+
+.qr-code {
+    width: 250px; /* Ajuste o tamanho do QR Code conforme necessário */
+    height: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Sombra para o QR Code */
+}
+
+p {
+    color: #ccc; /* Texto cinza claro */
+    font-size: 18px; /* Aumenta o tamanho da fonte */
+    margin-bottom: 20px;
+}
+
+.button:hover {
+    background-color: #45a049; /* Tom mais escuro ao passar o mouse */
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+}

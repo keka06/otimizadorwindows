@@ -31,4 +31,4 @@ Programas:
 
 OBS: A pasta '4 - Regedits' é recomendável por uso próprio, não foi incluida no aplicativo por questões de segurança.
 
-*recomendo mover a pasta 'kekaapp' na pasta local no sistema operacional (C:) para evitar conflitos.
+OBS2: Recomendo mover a pasta 'kekaapp' na pasta local no sistema operacional (C:) para evitar conflitos.

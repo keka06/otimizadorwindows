@@ -5,6 +5,7 @@ um aplicativo que faz otimizações basicas (apenas windows), feito em python.
 *grande parte dos arquivos devo dar créditos ao canal do https://www.youtube.com/@zJu4nn, obrigado.
 
 projeto pessoal feito para aprender e desenvolver habilidades na área de programação.
+desenvolvido por um estudante, programador iniciante.
 
 Linguagem: Python
 Interface Gráfica: CustomTkinter

@@ -29,6 +29,8 @@ Programas:
 - Programas de terceiros conhecidos pra quem é da área, caso tenha alguma dúvida, qualquer programa tem facilmente suas informações e feedback encontradas na web.
 - Recomendado procurar instruções para utlizá-los.
 
+**IGNORE OS PASSOS ABAIXO, FAÇA DOWNLOAD DO INSTALADOR EM RELEASES**
+
 OBS: A pasta '4 - Regedits' é recomendável por uso próprio, não foi incluida no aplicativo por questões de segurança.
 
 OBS2: Recomendo mover a pasta 'kekaapp' na pasta local no sistema operacional (C:) para evitar conflitos.

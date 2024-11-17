@@ -1,49 +1,122 @@
 from funcoes import *
 from apps import *
 from customtkinter import *
+from tkinter import *
 from PIL import Image, ImageTk
 import os
+import shutil
+import ctypes
+import sys
 
+# Função para exibir a mensagem pop-up
+def show_message(mensagem, titulo="Mensagem"):
+    ctypes.windll.user32.MessageBoxW(0, mensagem, titulo, 1)
+
+# Obtém o diretório onde o executável está sendo executado
+diretorio_atual = os.path.dirname(os.path.abspath(sys.argv[0]))
+
+# Nome da pasta que você quer mover
+nome_da_pasta = 'tweaker'
+
+# Caminho completo da pasta a ser movida
+caminho_origem = os.path.join(diretorio_atual, nome_da_pasta)
+
+# Caminho de destino (para onde a pasta será movida)
+caminho_destino = os.path.join('C:\\', nome_da_pasta)
+
+# Verificar se a pasta de origem existe
+if not os.path.exists(caminho_origem):
+    show_message(f'A pasta de origem não foi encontrada: {caminho_origem}', 'Erro')
+    sys.exit()  # Encerra o script caso a pasta de origem não seja encontrada
+
+# Verifique se a pasta já existe no destino
+if os.path.exists(caminho_destino):
+    show_message(f'A pasta já existe em {caminho_destino}', 'Aviso')
+else:
+    # Tentar mover a pasta
+    try:
+        shutil.move(caminho_origem, caminho_destino)
+        show_message(f'A pasta foi movida para {caminho_destino}', 'Sucesso')
+    except Exception as e:
+        show_message(f'Ocorreu um erro: {e}', 'Erro')
+
+######APLICATIVO
 set_appearance_mode("dark")
 set_default_color_theme("green")
+
 janela = CTk()
 janela.title("OptimizerByKeka")
 janela.geometry("940x480")
 janela.resizable(False,False)
 
-'''icon = os.path.join(sys.path[0], "icone3.ico")
-janela.iconbitmap(icon)'''
+# Função para obter o diretório correto dependendo de onde o script está sendo executado
+def obter_diretorio_icone():
+    if getattr(sys, 'frozen', False):
+        # Se o programa estiver empacotado com PyInstaller
+        return sys._MEIPASS
+    else:
+        # Se o programa estiver em execução como script
+        return os.path.dirname(os.path.abspath(__file__))
 
+# Caminho para o ícone dentro da pasta .img de tweaker
+current_dir = obter_diretorio_icone()
+icone_path = os.path.join(current_dir, "tweaker", ".img", "icone3.ico")
+
+# Verifica se o ícone existe
+if os.path.exists(icone_path):
+    # Definir o ícone na janela
+    janela.iconbitmap(icone_path)  # Usando iconbitmap() para definir o ícone
+else:
+    print(f"Ícone não encontrado: {icone_path}")
 #########fonte principal
 fonte_geral = "ebrima"
 colorB = "#410076"
 colorHb = "#280049"
 
-#########adicionar imagem
-current_dir = os.path.dirname(__file__)
+# Função para exibir a mensagem pop-up
+def show_message(mensagem, titulo="Mensagem"):
+    ctypes.windll.user32.MessageBoxW(0, mensagem, titulo, 1)
 
-# Define os caminhos das imagens usando os.path.join
-git_path = os.path.join(current_dir, "img", "git.png")
-ig_path = os.path.join(current_dir, "img", "ig.png")
-pix_path = os.path.join(current_dir, "img", "pix.png")
-play_path = os.path.join(current_dir, "img", "play3.png")
+# Obtém o diretório onde o executável está sendo executado
+if getattr(sys, 'frozen', False):
+    # Se empacotado, usa o diretório temporário (_MEIPASS)
+    current_dir = sys._MEIPASS
+else:
+    # Se não empacotado, usa o diretório do script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+tweaker_dir = os.path.join(current_dir, 'tweaker')
+
+# Caminho da pasta "tweaker/.img"
+img_dir = os.path.join(tweaker_dir, '.img')
+
+# Caminhos das imagens usando os.path.join para a pasta "tweaker/.img"
+git_path = os.path.join(img_dir, "git.png")
+ig_path = os.path.join(img_dir, "ig.png")
+pix_path = os.path.join(img_dir, "pix.png")
+play_path = os.path.join(img_dir, "play3.png")
 
 # Abre e redimensiona as imagens
-git = Image.open(git_path)
-git = git.resize((50, 50))
-git_tk = ImageTk.PhotoImage(git)
+try:
+    git = Image.open(git_path)
+    git = git.resize((50, 50))
+    git_tk = ImageTk.PhotoImage(git)
 
-ig = Image.open(ig_path)
-ig = ig.resize((52, 50))
-ig_tk = ImageTk.PhotoImage(ig)
+    ig = Image.open(ig_path)
+    ig = ig.resize((52, 50))
+    ig_tk = ImageTk.PhotoImage(ig)
 
-pix = Image.open(pix_path)
-pix = pix.resize((50, 50))
-pix_tk = ImageTk.PhotoImage(pix)
+    pix = Image.open(pix_path)
+    pix = pix.resize((50, 50))
+    pix_tk = ImageTk.PhotoImage(pix)
 
-play = Image.open(play_path)
-play = play.resize((16, 20))
-play_tk = ImageTk.PhotoImage(play)
+    play = Image.open(play_path)
+    play = play.resize((16, 20))
+    play_tk = ImageTk.PhotoImage(play)
+except Exception as e:
+    show_message(f'Ocorreu um erro ao carregar as imagens: {e}', 'Erro')
+    sys.exit()
+
 
 titulo = CTkLabel(janela, text="Basic Tweaker", font=("Bahnschrift",30,"bold"),text_color="#8e7cc3")
 titulo.pack(pady=(15,0))
@@ -142,6 +215,7 @@ windows_frame.pack(padx=10, pady=10, fill="both", expand=True)
 windows_frame.add("Outros")
 windows_frame.add("Limpeza")
 windows_frame.add("Serviços")
+windows_frame.add("Regedits")
 
 #aba outros
 uacButton = CTkButton(windows_frame.tab("Outros"), text="Desativar UAC", font=(fonte_geral,14),fg_color=colorB, hover_color=colorHb, command=disableUAC)
@@ -253,6 +327,15 @@ tempText.pack(padx=6,pady=1)
 tempButton = CTkButton(programas_fundo,text="",image=play_tk,fg_color="#2b2b2b", hover_color="#2b2b2b",width=32,height=32,command=execute_temp)
 tempButton.place(x=20,y=190)
 
+optimizerFrame = CTkFrame(programas_fundo, fg_color="#3c3c3c")
+optimizerFrame.place(x=60,y=250)
+
+optimizerText = CTkLabel(optimizerFrame, text = "Optimizer",font=(fonte_geral,15,"bold"))
+optimizerText.pack(padx=6,pady=1)
+
+optimizerButton = CTkButton(programas_fundo,text="",image=play_tk,fg_color="#2b2b2b", hover_color="#2b2b2b",width=32,height=32,command=execute_optimizer)
+optimizerButton.place(x=20,y=250)
+
 unparkframe = CTkFrame(programas_fundo, fg_color="#3c3c3c")
 unparkframe.place(x=340,y=10)
 
@@ -290,13 +373,13 @@ wubButton = CTkButton(programas_fundo,text="",image=play_tk,fg_color="#2b2b2b", 
 wubButton.place(x=300,y=190)
 
 dismFrame = CTkFrame(programas_fundo, fg_color="#3c3c3c")
-dismFrame.pack(pady=(260,0))
+dismFrame.place(x=340,y=250)
 
 dismText = CTkLabel(dismFrame, text = "Dism++",font=(fonte_geral,15,"bold"))
 dismText.pack(padx=6,pady=1)
 
 dismButton = CTkButton(programas_fundo,text="",image=play_tk,fg_color="#2b2b2b", hover_color="#2b2b2b",width=32,height=32,command=execute_dism)
-dismButton.place(x=207,y=260)
+dismButton.place(x=300,y=250)
 
 def adicionar_texto():
     texto = "Auto Runs: programa usado para desabilitar vários serviços ao iniciar owindows.\n\nMSI Util V3: utilize para ativar o modo MSI na placa de vídeo (modo MSImelhora a comunicação entre a placa de vídeo e o computador).\n\nPower Settings Explorer: exibe configurações de energia ocultas do \nWindows, pode ser configurada nas opções de energia.\n\nTemp Cleaner: limpa arquivos temporários.\n\nUnpark CPU: ativação de núcleos \"Parqueados\" para economizar energia.\n\nUWT4: ferramenta para mudar algumas configurações de registro do \nwindows afim de ganhar desempenho.\n\nDevice Cleanup Tool: remova entradas do gerenciador de dispositivos quesão salvas no registro, isso são apenas arquivos temporários.\n\nWindows Update Blocker: bloqueia permanentemente as atualizações \ndo windows com apenas um clique (também reverte isso com apenas um \nclique).\n\nDISM++: Permite excluir diversos arquivos temporários, log, desinstalardrivers e aplicativos instalados na sua máquina."
@@ -304,9 +387,36 @@ def adicionar_texto():
 
 # Cria a caixa de texto com tamanho definido
 text_box = CTkTextbox(programas_fundo, font=("consolas",11),width=450, height=340)  # Defina o tamanho desejado aqui
-text_box.pack(pady=(50,0))
+text_box.pack(pady=(320,0))
 
 text_box.bind("<Button-1>", lambda event: "break")
 adicionar_texto()
+
+allRegsText = CTkLabel(windows_frame.tab("Regedits"),text="Execute todos os regedits")
+allRegsText.pack(padx=3,pady=(15,3))
+
+allRegsButton = CTkButton(windows_frame.tab("Regedits"), text="Executar",font=(fonte_geral,14),fg_color=colorB, hover_color=colorHb, command=executar_regedits_sistema)
+allRegsButton.pack(pady=(0,20))
+
+def adicionar_texto_reg():
+    texto = f'''Irá aplicar todos os regedits recomendados por mim:\n\n
+- Aumentar Frequência da CPU & GPU\n
+- Aumentar Taxa de Transmissão de Dados (Internet)\n
+- Desativar o Gerenciador de mapas\n
+- Desativar PowerThrottling\n
+- Desativar Prefetch\n
+- Desativar serviços de diagnóstico e telemetria\n
+- Desativar serviços extras desnecessários\n
+- Desativar Superfetch\n
+- Diminuir Processos\n
+- Otimizações Basicas do Registro\n
+- Tweaks Necessários'''
+    text_box_reg.insert("end", texto)
+
+text_box_reg = CTkTextbox(windows_frame.tab("Regedits"), font=("consolas",11),width=450, height=340)  # Defina o tamanho desejado aqui
+text_box_reg.pack(pady=(20,0))
+
+text_box_reg.bind("<Button-1>", lambda event: "break")
+adicionar_texto_reg()
 
 janela.mainloop()

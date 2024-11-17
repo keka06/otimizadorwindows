@@ -1,38 +1,50 @@
 import subprocess
 import os
 
+# Função genérica para executar um executável com privilégios de administrador
+def execute_exe_as_admin(exe_path):
+    # Verifica se o arquivo existe antes de tentar executá-lo
+    if os.path.isfile(exe_path):
+        print(f"Executando o arquivo '{exe_path}' como administrador.")
+        try:
+            # Executa o arquivo com privilégios elevados
+            subprocess.run(
+                ["powershell", "-Command", f"Start-Process '{exe_path}' -Verb RunAs"],
+                check=True
+            )
+            print(f"Arquivo '{exe_path}' executado com privilégios de administrador.")
+        except subprocess.CalledProcessError:
+            print(f"Erro: Não foi possível executar '{exe_path}' como administrador.")
+    else:
+        print(f"Erro: O arquivo '{exe_path}' não foi encontrado.")
+
+# Funções específicas para cada arquivo executável com caminhos definidos
 def execute_autoruns():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "autoruns.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\AutoRuns.exe")
 
 def execute_msi():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "msiutil.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\MSI Util V3.exe")
 
 def execute_pwrset():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "powersettings.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\PowerSettingsExplorer.exe")
 
 def execute_temp():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "tempcleaner.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\Temp Cleaner.exe")
 
 def execute_unpark():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "unparkcpu.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\unparkcpu.exe")
 
 def execute_uwt4():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "uwt4.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\uwt4.exe")
 
 def execute_deviceCleanup():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "cleanup.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\DeviceCleanup.exe")
 
 def execute_wub():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "wub.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\Wub.exe")
 
 def execute_dism():
-    caminho_bat = os.path.join("C:", os.sep, "kekaapp", ".bat", "dism.bat")
-    subprocess.run(caminho_bat, check=True)
+    execute_exe_as_admin("C:\\tweaker\\Programas\\Dism++x64.exe")
+
+def execute_optimizer():
+    execute_exe_as_admin("C:\\tweaker\\Programas\\Optimizer-16.7.exe")

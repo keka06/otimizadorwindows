@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00 --- Registry File By zJu4nn
+
+; Disable Superfetch
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
+"EnableSuperfetch"=dword:0

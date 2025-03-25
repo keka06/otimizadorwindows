@@ -1,0 +1,2 @@
+Ao iniciar o programa ele irá mover a pasta 'tweaker' para a pasta C:/ 
+Caso de algum problema relacionado a isso mova manualmente e o programa pode funcionar normalmente
